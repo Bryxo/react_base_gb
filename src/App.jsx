@@ -12,5 +12,5 @@ export const App = () => {
     </>
   );
 };
- let a = 1
+
 export default App;
