@@ -34,6 +34,11 @@ module.exports = {
         quotes: ['warn', 'single'],
         semi: ['warn', 'always'],
     },
+    settings: {
+        react: {
+            version: "detect"
+        },
+    },
     overrides: [
         {
             files: ['webpack.config.js'],

@@ -66,7 +66,7 @@ export const Form = () => {
   return (
     <div className="input_box">
       <form addMessage={addMessage} onSubmit={handleSubmitForm}>
-        <MessagesTitle />
+        <MessagesTitle data-testid="test_messages_title" />
         {visible && <MessageList messages={messages} />}
         <input
           className="input_field"
@@ -76,9 +76,13 @@ export const Form = () => {
           onChange={(event) => setValue(event.target.value)}
           placeholder="Ведите сообщение..."
         />
-        <Button name={name} />
+        <Button />
       </form>
-      <button className="btn_visibility" onClick={() => setVisible(!visible)}>
+      <button
+        id="visib"
+        className="btn_visibility"
+        onClick={() => setVisible(!visible)}
+      >
         {visible ? 'Скрыть сообщения' : 'Показать сообщения'}
       </button>
       <ClearButton name={bntClearName} click={clear} />
