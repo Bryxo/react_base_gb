@@ -3,25 +3,13 @@ import React, { FC } from 'react';
 import style from './Button.module.scss';
 
 interface ButtonProps {
-  name:string;
-  // disabled: boolean;
-  // onButtonClick?: () => void;
+  name: string;
 }
 
 export const Button: FC<ButtonProps> = (props) => {
   return (
-    //кнопка без библиотеки
-    // <button className="btn_published" type="submit">
-    //   {props.name}
-    // </button>
-
-    <button
-      //variant="contained"
-      type="submit"
-      className={style.button}
-    >
+    <button type="submit" className={style.button}>
       {props.name}
     </button>
-
   );
 };

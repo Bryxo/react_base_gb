@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FC, useCallback, memo } from 'react';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 import { Button } from './Button';
 import { ClearButton } from './ClearButton/ClearButton';
 import { MessagesTitle } from './MessagesTitle';
@@ -8,12 +8,13 @@ import { AUTHOR } from '../constants';
 
 interface FormProps {
   addMessage: (value: string) => void;
+  children?: React.ReactNode;
 }
 
 interface Message {
-  id: string,
-  author: string,
-  value: string
+  id: string;
+  author: string;
+  value: string;
 }
 
 export const Form: FC<FormProps> = memo(({ addMessage }) => {
@@ -66,22 +67,21 @@ export const Form: FC<FormProps> = memo(({ addMessage }) => {
     }
   }, [messages]);
 
-
   return (
     <div className="input_box">
-      <Form addMessage={addMessage} onSubmit={handleSubmitForm}>
+      <form addMessage={addMessage} onSubmit={handleSubmitForm}>
         <MessagesTitle />
         {visible && <MessageList messages={messages} />}
-          <input
-            className="input_field"
-            type="text"
-            name={name}
-            value={value}
-            onChange={(event) => setValue(event.target.value)}
-            placeholder="Ведите сообщение..."
-          />
+        <input
+          className="input_field"
+          type="text"
+          name={name}
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          placeholder="Ведите сообщение..."
+        />
         <Button name={name} />
-      </Form>
+      </form>
       <button className="btn_visibility" onClick={() => setVisible(!visible)}>
         {visible ? 'Скрыть сообщения' : 'Показать сообщения'}
       </button>
