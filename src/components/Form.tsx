@@ -1,14 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC, useCallback, memo } from 'react';
+import { nanoid } from 'nanoid'
 import { Button } from './Button';
-import { ClearButton } from './ClearButton';
+import { ClearButton } from './ClearButton/ClearButton';
 import { MessagesTitle } from './MessagesTitle';
 import { MessageList } from './messageList';
 import { AUTHOR } from '../constants';
 
-export const Form = () => {
+interface FormProps {
+  addMessage: (value: string) => void;
+}
+
+interface Message {
+  id: string,
+  author: string,
+  value: string
+}
+
+export const Form: FC<FormProps> = memo(({ addMessage }) => {
   const [name] = useState('Опубликовать');
   const [value, setValue] = useState('');
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [visible, setVisible] = useState(true);
   const [bntClearName] = useState('Clear button!!');
 
@@ -16,7 +27,7 @@ export const Form = () => {
     setMessages([]);
   };
 
-  const handleSubmitForm = (event) => {
+  const handleSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!value) {
       alert('brrr.. Пустое нельзя добавлять');
@@ -24,6 +35,7 @@ export const Form = () => {
       setMessages([
         ...messages,
         {
+          id: nanoid(),
           author: 'user',
           value: value,
         },
@@ -41,6 +53,7 @@ export const Form = () => {
         setMessages([
           ...messages,
           {
+            id: nanoid(),
             author: AUTHOR.BOT,
             value: 'im vasia',
           },
@@ -53,35 +66,26 @@ export const Form = () => {
     }
   }, [messages]);
 
-  const addMessage = (value) => {
-    setMessages([
-      ...messages,
-      {
-        author: AUTHOR.USER,
-        value,
-      },
-    ]);
-  };
 
   return (
     <div className="input_box">
-      <form addMessage={addMessage} onSubmit={handleSubmitForm}>
+      <Form addMessage={addMessage} onSubmit={handleSubmitForm}>
         <MessagesTitle />
         {visible && <MessageList messages={messages} />}
-        <input
-          className="input_field"
-          type="text"
-          name={name}
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
-          placeholder="Ведите сообщение..."
-        />
+          <input
+            className="input_field"
+            type="text"
+            name={name}
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
+            placeholder="Ведите сообщение..."
+          />
         <Button name={name} />
-      </form>
+      </Form>
       <button className="btn_visibility" onClick={() => setVisible(!visible)}>
         {visible ? 'Скрыть сообщения' : 'Показать сообщения'}
       </button>
       <ClearButton name={bntClearName} click={clear} />
     </div>
   );
-};
+});

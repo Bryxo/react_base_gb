@@ -25,6 +25,7 @@ module.exports = {
     },
     plugins: ['react', 'prettier', 'react-hooks', 'jest'],
     rules: {
+        'react/display-name': 'off',
         'prettier/prettier': [
             'error',
             {

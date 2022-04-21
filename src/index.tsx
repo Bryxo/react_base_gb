@@ -1,10 +1,10 @@
 import React from 'react';
 //import ReactDOM from 'react-dom'; - до версии 18 react
 import * as ReactDomClient from 'react-dom/client'
-import './index.css';
+//import './index.css';
 import { App } from './App';
 
-const container = document.getElementById('root');
+const container = document.getElementById('root') as HTMLElement;
 const root = ReactDomClient.createRoot(container);
 
 root.render(
