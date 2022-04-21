@@ -1,7 +1,7 @@
 import React, {FC, useState, useCallback} from 'react';
 import { nanoid } from 'nanoid';
-import { Form } from './Components/Form';
-import './App.scss';
+import { Form } from './components/Form';
+//import './App.scss';
 import { AUTHOR } from './constants';
 
 interface Message {
