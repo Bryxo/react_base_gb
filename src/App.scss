@@ -8,8 +8,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-.paragraph {
-  color: black;
+.messages_title {
+  color: rgb(45, 45, 54);
 }
 .App {
   text-align: center;
@@ -40,7 +40,7 @@ code {
   min-width: 500px;
   border: none;
 }
-.btn_published,
+
 .btn_visibility {
   margin: 20px 0 20px 0;
   border: none;
