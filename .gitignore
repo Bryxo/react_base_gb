@@ -1,10 +1,5 @@
-# dependencies
-/node_modules
 node_modules
-
-# testing
-/coverage
+build
 coverage
-
-# misc
-.loki
+storybook-static
+build-storybook.log
